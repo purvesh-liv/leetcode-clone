@@ -3,7 +3,7 @@
 import { prisma } from "@/lib/db"
 import { currentUser } from "@clerk/nextjs/server"
 import { error } from "console";
-import { useReducer } from "react";
+
 
 export const onBoardUser = async()=>{
     try {
@@ -65,3 +65,25 @@ export const currentUserRole = async () => {
     }
 }
 
+// //export const getCurrentUserRole = async () => {
+//   try {
+//         const user = await currentUser();
+//         if (!user) {
+//           return {
+//             success: false,
+//             error: "No authenticated user found",
+//           };
+//         }
+//         const data = await prisma.user.findUnique({
+//             where:{
+//                 clerkId:user?.id
+
+//             },
+//             select:{
+
+//             }
+//         })
+//     } catch (error) {
+        
+//     }
+// //} 
