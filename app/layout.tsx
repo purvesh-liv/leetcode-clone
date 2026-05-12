@@ -9,6 +9,7 @@ import {
   SignUpButton,
   UserButton,
 } from "@clerk/nextjs";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const jetbrainsMono = JetBrains_Mono({subsets:['latin'],variable:'--font-mono'});
 
@@ -43,9 +44,19 @@ export default function RootLayout({
         "font-mono",
         jetbrainsMono.variable,
       )}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <ClerkProvider>{children}</ClerkProvider>
+        <ClerkProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </ClerkProvider>
       </body>
     </html>
   );

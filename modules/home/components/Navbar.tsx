@@ -4,6 +4,7 @@ import React from 'react'
 import { SignInButton,SignUpButton,UserButton,Show } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
 import { UserRole } from "@/lib/generated/prisma/enums";
+import { ModeToggle } from '@/components/mode-toogle';
 
 
 const Navbar = ({userRole}:any) => {
@@ -40,28 +41,22 @@ const Navbar = ({userRole}:any) => {
           </div>
 
           <div className="flex items-center gap-4">
-            {/* // theme toggle */}
+            <ModeToggle/>
             <Show when={"signed-in"}>
-              {
-                userRole && userRole === UserRole.ADMIN && (
-                  <Link href={"/create-problem"}>
-                    <Button variant={"outline"}>
-                      Create Problem
-                    </Button>
-                  </Link>
-                )
-              }
+              {userRole && userRole === UserRole.ADMIN && (
+                <Link href={"/create-problem"}>
+                  <Button variant={"outline"}>Create Problem</Button>
+                </Link>
+              )}
               <UserButton />
             </Show>
-
-              <Show when="signed-out">
-                <SignInButton />
-                <SignUpButton>
-                  <Button className=" rounded-md  font-medium bg-amber-400 hover:bg-amber-500 text-white text-sm cursor-pointer">
-                    Sign Up
-                  </Button>
-                </SignUpButton>
-              
+            <Show when="signed-out">
+              <SignInButton />
+              <SignUpButton>
+                <Button className=" rounded-md  font-medium bg-amber-400 hover:bg-amber-500 text-white text-sm cursor-pointer">
+                  Sign Up
+                </Button>
+              </SignUpButton>
             </Show>
           </div>
         </div>
