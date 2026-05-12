@@ -3,6 +3,8 @@ import Link from 'next/link';
 import React from 'react'
 import { SignInButton,SignUpButton,UserButton,Show } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
+import { UserRole } from "@/lib/generated/prisma/enums";
+
 
 const Navbar = ({userRole}:any) => {
   return (
@@ -41,7 +43,7 @@ const Navbar = ({userRole}:any) => {
             {/* // theme toggle */}
             <Show when={"signed-in"}>
               {
-                userRole && userRole === userRole.ADMIN && (
+                userRole && userRole === UserRole.ADMIN && (
                   <Link href={"/create-problem"}>
                     <Button variant={"outline"}>
                       Create Problem
